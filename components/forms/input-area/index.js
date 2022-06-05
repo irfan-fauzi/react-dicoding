@@ -1,10 +1,11 @@
 import React from 'react'
 
-const InputArea = () => {
+const InputArea = ({eventOnChange}) => {
   return (
     <div>
-      <input type="text" className='border border-black'/>
+      <input type="text" className='border border-black' onChange={eventOnChange}/>
     </div>
+    
   )
 }
 
