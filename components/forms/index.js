@@ -2,14 +2,18 @@ import React, { useState } from 'react'
 import Button from '../button'
 import {Gap} from '../../components'
 import InputArea from './input-area'
+import ListsContacts from '../lists'
 
 
 const Form = () => {
 
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
-  const [valueText, setValueText] = useState("")
-  const [contacts, setContacts] = useState([])
+  const [contacts, setContacts] = useState([{
+    id: 1,
+    name: "irfan",
+    email: "irfan@yahoo.com"
+  }])
 
   const setValueName = (e) => {
     setName(e.target.value)
@@ -19,8 +23,6 @@ const Form = () => {
     setEmail(e.target.value)
   }
 
-  
-
   const saveInput = () => {
     if(!name){
       console.log("nama kosong")
@@ -29,7 +31,7 @@ const Form = () => {
       console.log("email kosong")
       return false
     } else {
-      setContacts([...contacts,{name, email}])
+      setContacts([...contacts,{id: Math.random(),name, email}])
       setName("")
       setEmail("")
     }
@@ -44,15 +46,8 @@ const Form = () => {
       <InputArea eventOnChange={setValueEmail} setValue={email}/>
       <Gap className='h-5' />
       <Button eventOnClick={saveInput} />
-      
-      <ul>
-        {contacts.map(contact => (
-          <div key={Math.random()}>
-            <li>{contact.name}</li>
-            <li>{contact.email}</li>
-          </div>
-        ))}
-      </ul>
+      <Gap className='h-5' />
+      <ListsContacts contacts={contacts} />
     </div>
   )
 }
