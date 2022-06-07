@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import Button from '../button'
-import {Gap} from '../../components'
+import {Gap, ListsContacts} from '../../components'
 import InputArea from './input-area'
-import ListsContacts from '../lists'
 
 
 const Form = () => {
@@ -38,6 +37,10 @@ const Form = () => {
     
   }
 
+  const deleteContact = (id) => {
+    const newContacts = contacts.filter(contact => contact.id !== id)
+    setContacts(newContacts)
+  }
 
   return (
     <div className='border flex flex-col items-center'>
@@ -47,7 +50,7 @@ const Form = () => {
       <Gap className='h-5' />
       <Button eventOnClick={saveInput} />
       <Gap className='h-5' />
-      <ListsContacts contacts={contacts} />
+      <ListsContacts contacts={contacts} eventOnClick={deleteContact} />
     </div>
   )
 }
