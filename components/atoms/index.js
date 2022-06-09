@@ -7,4 +7,4 @@ import NoteDate from './note-date'
 import NoteTitle from './note-title'
 import Title from './title'
 
-export {ButtonLarge, ButtonSmall, InputNoteContent, InputNoteTitle, NoteContent, NoteDate, NoteTitle, Title}
+export { ButtonLarge, ButtonSmall, InputNoteContent, InputNoteTitle, NoteContent, NoteDate, NoteTitle, Title }

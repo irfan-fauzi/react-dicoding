@@ -2,7 +2,7 @@ import React from 'react'
 
 const NoteTitle = () => {
   return (
-    <div>NoteTitle</div>
+    <p>NoteTitle</p>
   )
 }
 
