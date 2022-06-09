@@ -1,5 +1,5 @@
 import React from 'react'
-import { CardNoteContent } from '../../molecules'
+import { CardNoteContent } from '../../../components'
 
 const CardsNotesContents = () => {
   return (

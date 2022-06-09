@@ -1,5 +1,5 @@
 import React from 'react'
-import { NoteTitle, NoteDate, NoteContent, ButtonSmall } from '../../atoms'
+import { NoteTitle, NoteDate, NoteContent, ButtonSmall } from '../../../components'
 
 const CardNoteContent = () => {
   return (

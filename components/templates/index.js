@@ -1,5 +1,5 @@
 import React from 'react'
-import { CardsNotesContents, InputSection } from '../organisms'
+import { CardsNotesContents, InputSection } from '../../components'
 
 const NotesApp = () => {
   return (

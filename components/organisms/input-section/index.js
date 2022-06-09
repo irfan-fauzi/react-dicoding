@@ -1,5 +1,5 @@
 import React from 'react'
-import { FormInputNote } from '../../molecules'
+import { FormInputNote } from '../../../components'
 const InputSection = () => {
   return (
     <>

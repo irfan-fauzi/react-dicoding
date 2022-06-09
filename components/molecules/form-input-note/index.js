@@ -1,5 +1,5 @@
 import React from 'react'
-import { InputNoteTitle, InputNoteContent, ButtonLarge } from '../../atoms'
+import { InputNoteTitle, InputNoteContent, ButtonLarge } from '../../../components'
 const FormInputNote = () => {
   return (
     <>
