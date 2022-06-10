@@ -1,13 +1,16 @@
 import React from 'react'
-import { InputNoteTitle, InputNoteContent, ButtonLarge } from '../../../components'
+import { InputNoteTitle, InputNoteContent, ButtonLarge, Gap } from '../../../components'
 const FormInputNote = () => {
   return (
-    <>
-    <div>FormInputNote</div>
-    <InputNoteTitle />
-    <InputNoteContent />
-    <ButtonLarge />
-    </>
+    <div className='max-w-lg px-3 m-auto'>
+      <div className='flex flex-col'>
+        <InputNoteTitle />
+        <Gap className='h-3' />
+        <InputNoteContent />
+      </div>
+      <Gap className='h-3' />
+      <ButtonLarge />
+    </div>
 
   )
 }

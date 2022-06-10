@@ -1,10 +1,10 @@
 import React from 'react'
-import { CardsNotesContents, InputSection } from '../../components'
+import { CardsNotesContents, InputSection, Title } from '../../components'
 
 const NotesApp = () => {
   return (
     <>
-      <div>NotesApp</div>
+      <Title title="judul" />
 						<InputSection />
       <CardsNotesContents />
     </>

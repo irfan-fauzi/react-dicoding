@@ -2,7 +2,9 @@ import React from 'react'
 
 const InputNoteTitle = () => {
   return (
-    <div>InputNoteTitle</div>
+    <>
+      <input type="text" className='border border-black' placeholder='title note'/>
+    </>
   )
 }
 

@@ -2,7 +2,7 @@ import React from 'react'
 
 const Gap = ({className}) => {
   return (
-    <div className={className}>Gap</div>
+    <div className={className}></div>
   )
 }
 
