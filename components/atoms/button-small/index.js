@@ -2,7 +2,7 @@ import React from 'react'
 
 const ButtonSmall = () => {
   return (
-    <div>ButtonSmall</div>
+    <button className='bg-gray-400 px-5 py-2'>ButtonSmall</button>
   )
 }
 

@@ -1,8 +1,8 @@
 import React from 'react'
 
-const NoteTitle = () => {
+const NoteTitle = ({title}) => {
   return (
-    <p>NoteTitle</p>
+    <p>{title}</p>
   )
 }
 
