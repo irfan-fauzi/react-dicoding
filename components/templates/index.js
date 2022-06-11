@@ -11,6 +11,17 @@ const NotesApp = () => {
     setArrayNotes(getInitialData())
   },[])
 
+  const createNote = () => {
+    setArrayNotes([...arrayNotes, {
+      id: Math.random(),
+      title: title,
+      body: content,
+      createdAt: new Date(),
+      archived: false,
+    }])
+    setTitle("")
+    setContent("")
+  }
   return (
     <>
       <Title title="judul" />
@@ -19,6 +30,7 @@ const NotesApp = () => {
         onChangeContent={(e) => setContent(e.target.value)} 
         valueTitle={title}
         valueContent={content}
+        onClickAddNote={createNote}
         />
       <Gap className='h-3'/>
       

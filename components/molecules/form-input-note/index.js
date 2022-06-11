@@ -1,6 +1,6 @@
 import React from 'react'
 import { InputTextMedium, InputTextLarge, ButtonLarge, Gap } from '../../../components'
-const FormInputNote = ({onChangeTitle, onChangeContent, valueTitle, valueContent}) => {
+const FormInputNote = ({onChangeTitle, onChangeContent, valueTitle, valueContent, onClickAddNote}) => {
   return (
     <div className='max-w-lg px-3 m-auto'>
       <div className='flex flex-col'>
@@ -15,7 +15,7 @@ const FormInputNote = ({onChangeTitle, onChangeContent, valueTitle, valueContent
         />
       </div>
       <Gap className='h-3' />
-      <ButtonLarge />
+      <ButtonLarge onClickAddNote={onClickAddNote} />
     </div>
 
   )

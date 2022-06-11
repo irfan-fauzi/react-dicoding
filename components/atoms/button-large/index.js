@@ -1,8 +1,8 @@
 import React from 'react'
 
-const ButtonLarge = () => {
+const ButtonLarge = ({onClickAddNote}) => {
   return (
-    <button className='border border-black w-full bg-gray-200 py-2'>Tambahkan</button>
+    <button className='border border-black w-full bg-gray-200 py-2' onClick={onClickAddNote}>Tambahkan</button>
   )
 }
 
