@@ -21,9 +21,7 @@ const NotesApp = () => {
         valueContent={content}
         />
       <Gap className='h-3'/>
-      {
-        console.log(content)
-      }
+      
       <CardsNotesContents arrayNotes={arrayNotes} />
     </>
   )

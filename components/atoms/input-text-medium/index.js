@@ -1,6 +1,6 @@
 import React from 'react'
 
-const InputNoteTitle = ({onChangeTitle, valueTitle}) => {
+const InputTextMedium = ({onChangeTitle, valueTitle}) => {
   return (
     <>
       <input type="text" className='border border-black' placeholder='title note' onChange={onChangeTitle} value={valueTitle}/>
@@ -8,4 +8,4 @@ const InputNoteTitle = ({onChangeTitle, valueTitle}) => {
   )
 }
 
-export default InputNoteTitle
+export default InputTextMedium
