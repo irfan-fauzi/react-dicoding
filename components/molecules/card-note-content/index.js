@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 import { NoteTitle, NoteContent, ButtonSmall, NoteCreatedDate } from '../../../components'
 import { Gap } from '../../atoms'
@@ -12,8 +12,8 @@ const CardNoteContent = ({notes}) => {
       <NoteContent content={notes.body} />
       <Gap className='h-3' />
       <div className='flex w-full justify-between '>
-        <ButtonSmall />
-        <ButtonSmall />
+        <ButtonSmall title="arsipkan" className='bg-blue-300 px-4 py-2' />
+        <ButtonSmall title="hapus" className='bg-red-400 px-4 py-2'/>
       </div>
       <Gap className='h-3' />
     </article>

@@ -1,9 +1,9 @@
 import React from 'react'
 
-const InputNoteTitle = () => {
+const InputNoteTitle = ({onChangeTitle, valueTitle}) => {
   return (
     <>
-      <input type="text" className='border border-black' placeholder='title note'/>
+      <input type="text" className='border border-black' placeholder='title note' onChange={onChangeTitle} value={valueTitle}/>
     </>
   )
 }

@@ -5,6 +5,8 @@ import { Gap } from '../atoms'
 
 const NotesApp = () => {
   const [arrayNotes, setArrayNotes] = useState([])
+  const [title, setTitle] = useState("")
+  const [content, setContent] = useState("")
   useEffect(() => {
     setArrayNotes(getInitialData())
   },[])
@@ -12,8 +14,16 @@ const NotesApp = () => {
   return (
     <>
       <Title title="judul" />
-			<InputSection />
-      <Gap className='h-3' />
+			<InputSection 
+        onChangeTitle={(e) => setTitle(e.target.value)}
+        onChangeContent={(e) => setContent(e.target.value)} 
+        valueTitle={title}
+        valueContent={content}
+        />
+      <Gap className='h-3'/>
+      {
+        console.log(content)
+      }
       <CardsNotesContents arrayNotes={arrayNotes} />
     </>
   )
