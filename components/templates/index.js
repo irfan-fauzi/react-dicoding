@@ -7,8 +7,12 @@ const NotesApp = () => {
   const [arrayNotes, setArrayNotes] = useState([])
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
+  const [isArchived, setIsArchived] = useState(false)
+  //const initialData = getInitialData()
+
   useEffect(() => {
     setArrayNotes(getInitialData())
+    
   },[])
 
   const createNote = () => {
@@ -22,6 +26,26 @@ const NotesApp = () => {
     setTitle("")
     setContent("")
   }
+
+  const deleteNote = (id) => {
+    const newNotes = arrayNotes.filter(note => note.id !== id)
+    setArrayNotes(newNotes)
+  }
+
+  const arsipNote = (id) => {
+    setIsArchived(true)
+   let temp = arrayNotes.map(obj => {
+    if(obj.id === id){
+      return {
+        ...obj,
+        archived: isArchived
+      }
+    }
+    return {...obj}
+   })
+   setArrayNotes(temp)
+  }
+
   return (
     <>
       <Title title="judul" />
@@ -33,8 +57,11 @@ const NotesApp = () => {
         onClickAddNote={createNote}
         />
       <Gap className='h-3'/>
-      
-      <CardsNotesContents arrayNotes={arrayNotes} />
+      <CardsNotesContents 
+        arrayNotes={arrayNotes}
+        onClickDeleteNote={deleteNote}
+        onClickArsip={arsipNote} 
+      />
     </>
   )
 }
