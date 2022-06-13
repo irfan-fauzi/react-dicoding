@@ -12,7 +12,9 @@ const NotesApp = () => {
 
   useEffect(() => {
     setArrayNotes(getInitialData())
-    
+    return () => {
+      setArrayNotes([])
+    }
   },[])
 
   const createNote = () => {
@@ -33,9 +35,10 @@ const NotesApp = () => {
   }
 
   const arsipNote = (id) => {
-    setIsArchived(true)
+    
    let temp = arrayNotes.map(obj => {
     if(obj.id === id){
+      setIsArchived(!isArchived)
       return {
         ...obj,
         archived: isArchived
@@ -44,6 +47,7 @@ const NotesApp = () => {
     return {...obj}
    })
    setArrayNotes(temp)
+   console.log(isArchived)
   }
 
   return (
