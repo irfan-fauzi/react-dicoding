@@ -16,7 +16,7 @@ const CardNoteContent = ({notes, onClickDeleteNote, onClickArsip}) => {
           title="arsipkan" 
           className='bg-blue-300 px-4 py-2' 
           onClickArsip={onClickArsip}
-          param={notes.id}
+          param={notes}
           />
         <ButtonSmall 
           title="hapus" 
@@ -25,8 +25,6 @@ const CardNoteContent = ({notes, onClickDeleteNote, onClickArsip}) => {
           param={notes.id}
           />
       </div>
-      <p>{notes.archived ? 'true' : 'false'}</p>
-     
       <Gap className='h-3' />
     </article>
   )

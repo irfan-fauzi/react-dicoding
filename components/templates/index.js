@@ -2,19 +2,16 @@ import React, { useEffect, useState } from 'react'
 import { getInitialData } from '../../utils/sampleNote'
 import { CardsNotesContents, InputSection, Title } from '../../components'
 import { Gap } from '../atoms'
+import {changeStatusInner} from '../../utils/functions'
 
 const NotesApp = () => {
-  const [arrayNotes, setArrayNotes] = useState([])
+  const [notesNotArchived, setNotesNotArchived] = useState([])
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
-  const [isArchived, setIsArchived] = useState(false)
-  //const initialData = getInitialData()
+  const [notesArchived, setNoteArchived] = useState([])
 
   useEffect(() => {
-    setArrayNotes(getInitialData())
-    return () => {
-      setArrayNotes([])
-    }
+    setNotesNotArchived(getInitialData())
   },[])
 
   const createNote = () => {
@@ -30,24 +27,18 @@ const NotesApp = () => {
   }
 
   const deleteNote = (id) => {
-    const newNotes = arrayNotes.filter(note => note.id !== id)
-    setArrayNotes(newNotes)
+    const newNotes = notesNotArchived.filter(note => note.id !== id)
+    setNotesNotArchived(newNotes)
   }
 
-  const arsipNote = (id) => {
-    
-   let temp = arrayNotes.map(obj => {
-    if(obj.id === id){
-      setIsArchived(!isArchived)
-      return {
-        ...obj,
-        archived: isArchived
-      }
-    }
-    return {...obj}
-   })
-   setArrayNotes(temp)
-   console.log(isArchived)
+  const changeStatus = (note) => {
+   setNoteArchived([...notesArchived, {
+      id: note.id,
+      title: note.title,
+      body: note.body,
+      createdAt: note.createdAt,
+      archived: true,
+   }])
   }
 
   return (
@@ -62,10 +53,13 @@ const NotesApp = () => {
         />
       <Gap className='h-3'/>
       <CardsNotesContents 
-        arrayNotes={arrayNotes}
+        arrayNotes={notesNotArchived}
         onClickDeleteNote={deleteNote}
-        onClickArsip={arsipNote} 
+        onClickArsip={changeStatus} 
       />
+      {
+        console.log(notesArchived)
+      }
     </>
   )
 }
