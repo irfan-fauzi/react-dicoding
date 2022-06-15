@@ -9,13 +9,14 @@ const NotesApp = () => {
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
   const [notesArchived, setNoteArchived] = useState([])
+  const [isArchived, setIsArchived] = useState(true)
 
   useEffect(() => {
     setNotesNotArchived(getInitialData())
   },[])
 
   const createNote = () => {
-    setArrayNotes([...arrayNotes, {
+    setNotesNotArchived([...notesNotArchived, {
       id: Math.random(),
       title: title,
       body: content,
@@ -26,19 +27,41 @@ const NotesApp = () => {
     setContent("")
   }
 
-  const deleteNote = (id) => {
-    const newNotes = notesNotArchived.filter(note => note.id !== id)
-    setNotesNotArchived(newNotes)
+  const deleteNote = (notes) => {
+    if(notes.archived == false) {
+      const newNotes = notesNotArchived.filter(note => note.id !== notes.id)
+      setNotesNotArchived(newNotes)
+    } else {
+      const temp = notesArchived.filter(note => note.id !== notes.id)
+      setNoteArchived(temp)
+    }
+    
   }
 
+  
+
   const changeStatus = (note) => {
-   setNoteArchived([...notesArchived, {
-      id: note.id,
-      title: note.title,
-      body: note.body,
-      createdAt: note.createdAt,
-      archived: true,
-   }])
+   if(note.archived == false) {
+      const arr = notesNotArchived.filter(el => el.id !== note.id)
+      setNotesNotArchived(arr)
+      setNoteArchived([...notesArchived, {
+        id: note.id,
+        title: note.title,
+        body: note.body,
+        createdAt: note.createdAt,
+        archived: true,
+      }])
+   } else {
+     const arr = notesArchived.filter(el => el.id !== note.id)
+     setNoteArchived(arr)
+     setNotesNotArchived([...notesNotArchived, {
+        id: note.id,
+        title: note.title,
+        body: note.body,
+        createdAt: note.createdAt,
+        archived: false,
+     }])
+   }
   }
 
   return (
@@ -57,9 +80,24 @@ const NotesApp = () => {
         onClickDeleteNote={deleteNote}
         onClickArsip={changeStatus} 
       />
+      <Gap className='h-10'/>
+      <p className='text-center'>archived note :</p>
+      <Gap className='h-10'/>
       {
-        console.log(notesArchived)
+        notesArchived.length > 0 ? (
+          <CardsNotesContents 
+            arrayNotes={notesArchived}
+            onClickDeleteNote={deleteNote}
+            onClickArsip={changeStatus} 
+          />
+        ) : (
+          <>
+          <p className='text-center'>kosong</p>
+          <Gap className='h-10'/>
+          </>
+        )
       }
+      
     </>
   )
 }

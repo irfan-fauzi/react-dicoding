@@ -13,7 +13,7 @@ const CardNoteContent = ({notes, onClickDeleteNote, onClickArsip}) => {
       <Gap className='h-3' />
       <div className='flex w-full justify-between '>
         <ButtonSmall 
-          title="arsipkan" 
+          title={notes.archived ? `pindahkan` : `arsipkan`} 
           className='bg-blue-300 px-4 py-2' 
           onClickArsip={onClickArsip}
           param={notes}
@@ -22,7 +22,7 @@ const CardNoteContent = ({notes, onClickDeleteNote, onClickArsip}) => {
           title="hapus" 
           className='bg-red-400 px-4 py-2'
           onClickDeleteNote={onClickDeleteNote}
-          param={notes.id}
+          param={notes}
           />
       </div>
       <Gap className='h-3' />

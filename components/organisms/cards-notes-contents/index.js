@@ -3,7 +3,7 @@ import { CardNoteContent } from '../../../components'
 
 const CardsNotesContents = ({arrayNotes, onClickDeleteNote, onClickArsip}) => {
   return (
-    <section className='flex flex-col gap-2 max-w-2xl m-auto'>
+    <section className='grid grid-cards gap-1 max-w-screen-lg mx-auto'>
      {
        arrayNotes.map(notes => (
         <CardNoteContent 
