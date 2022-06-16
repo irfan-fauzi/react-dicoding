@@ -2,14 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { getInitialData } from '../../utils/sampleNote'
 import { CardsNotesContents, InputSection, Title } from '../../components'
 import { Gap } from '../atoms'
-import {changeStatusInner} from '../../utils/functions'
+import { addToDatabase, deleteItemDatabase } from '../../utils/functions'
 
 const NotesApp = () => {
   const [notesNotArchived, setNotesNotArchived] = useState([])
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
   const [notesArchived, setNoteArchived] = useState([])
-  const [isArchived, setIsArchived] = useState(true)
 
   useEffect(() => {
     setNotesNotArchived(getInitialData())
@@ -27,41 +26,21 @@ const NotesApp = () => {
     setContent("")
   }
 
-  const deleteNote = (notes) => {
-    if(notes.archived == false) {
-      const newNotes = notesNotArchived.filter(note => note.id !== notes.id)
-      setNotesNotArchived(newNotes)
-    } else {
-      const temp = notesArchived.filter(note => note.id !== notes.id)
-      setNoteArchived(temp)
-    }
-    
+  
+  const deleteNote = (note) => {
+    if(!note.archived){
+      deleteItemDatabase(notesNotArchived, setNotesNotArchived, note.id)
+    } deleteItemDatabase(notesArchived, setNoteArchived, note.id)
   }
 
-  
-
   const changeStatus = (note) => {
-   if(note.archived == false) {
-      const arr = notesNotArchived.filter(el => el.id !== note.id)
-      setNotesNotArchived(arr)
-      setNoteArchived([...notesArchived, {
-        id: note.id,
-        title: note.title,
-        body: note.body,
-        createdAt: note.createdAt,
-        archived: true,
-      }])
+   if(!note.archived) {
+      deleteItemDatabase(notesNotArchived, setNotesNotArchived, note.id)
+      addToDatabase(notesArchived, setNoteArchived, note, true)
    } else {
-     const arr = notesArchived.filter(el => el.id !== note.id)
-     setNoteArchived(arr)
-     setNotesNotArchived([...notesNotArchived, {
-        id: note.id,
-        title: note.title,
-        body: note.body,
-        createdAt: note.createdAt,
-        archived: false,
-     }])
-   }
+      deleteItemDatabase(notesArchived, setNoteArchived, note.id)
+      addToDatabase(notesNotArchived, setNotesNotArchived, note, false)
+   }      
   }
 
   return (

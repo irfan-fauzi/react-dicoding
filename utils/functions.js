@@ -1,14 +1,16 @@
-const changeStatusInner = (id, allNotes, newValue) => {
-  let temp = allNotes.map(obj => {
-    if(obj.id === id){
-      return {
-        ...obj,
-        archived : newValue
-      }
-    }
-    return {...obj}
-   })
-  return temp 
+const addToDatabase = (database, setDataBase, objDatabase, status) => {
+  setDataBase([...database, {
+    id: objDatabase.id,
+    title: objDatabase.title,
+    body: objDatabase.body,
+    createdAt: objDatabase.createdAt,
+    archived: status
+  }])
 }
 
-export {changeStatusInner}
+const deleteItemDatabase = (database, setDatabase, id) => {
+  const newObj = database.filter(item => item.id !== id)
+  return setDatabase(newObj)
+}
+
+export {addToDatabase, deleteItemDatabase}
