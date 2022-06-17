@@ -3,8 +3,10 @@ import { getInitialData } from '../../utils/sampleNote'
 import { CardsNotesContents, InputSection, Title } from '../../components'
 import { Gap } from '../atoms'
 import { addToDatabase, deleteItemDatabase } from '../../utils/functions'
+import {AppContext} from '../../utils/context/appContex'
 
 const NotesApp = () => {
+  
   const [notesNotArchived, setNotesNotArchived] = useState([])
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
@@ -42,17 +44,20 @@ const NotesApp = () => {
       addToDatabase(notesNotArchived, setNotesNotArchived, note, false)
    }      
   }
-
+  const appContextValue = {
+    title,
+    content,
+    createNote
+  }
   return (
     <>
       <Title title="judul" />
+      <AppContext.Provider value={appContextValue}>
 			<InputSection 
         onChangeTitle={(e) => setTitle(e.target.value)}
         onChangeContent={(e) => setContent(e.target.value)} 
-        valueTitle={title}
-        valueContent={content}
-        onClickAddNote={createNote}
         />
+      </AppContext.Provider>  
       <Gap className='h-3'/>
       <CardsNotesContents 
         arrayNotes={notesNotArchived}

@@ -1,9 +1,9 @@
 import React from 'react'
 
-const InputTextMedium = ({onChangeTitle, valueTitle}) => {
+const InputTextMedium = ({onChange, value}) => {
   return (
     <>
-      <input type="text" className='border border-black' placeholder='title note' onChange={onChangeTitle} value={valueTitle}/>
+      <input type="text" className='border border-black' placeholder='title note' onChange={onChangeTitle} value={value}/>
     </>
   )
 }

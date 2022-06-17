@@ -1,21 +1,24 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { InputTextMedium, InputTextLarge, ButtonLarge, Gap } from '../../../components'
-const FormInputNote = ({onChangeTitle, onChangeContent, valueTitle, valueContent, onClickAddNote}) => {
+import { AppContext } from '../../../utils/context/appContex'
+
+const FormInputNote = ({onChangeTitle, onChangeContent}) => {
+  const context = useContext(AppContext)
   return (
     <div className='max-w-lg px-3 m-auto'>
       <div className='flex flex-col'>
         <InputTextMedium 
-          onChangeTitle={onChangeTitle}
-          valueTitle={valueTitle}
+          onChange={onChangeTitle}
+          value={context.title}
           />
         <Gap className='h-3' />
         <InputTextLarge 
           onChangeContent={onChangeContent}
-          valueContent={valueContent}
+          valueContent={va}
         />
       </div>
       <Gap className='h-3' />
-      <ButtonLarge onClickAddNote={onClickAddNote} />
+      <ButtonLarge />
     </div>
 
   )
