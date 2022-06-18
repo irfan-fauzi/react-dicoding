@@ -1,12 +1,9 @@
 import React from 'react'
 import { FormInputNote } from '../../../components'
-const InputSection = ({onChangeTitle, onChangeContent}) => {
+const InputSection = () => {
   return (
     <section>
-      <FormInputNote 
-        onChangeTitle={onChangeTitle}
-        onChangeContent={onChangeContent}
-      />
+      <FormInputNote/>
     </section>
   )
 }

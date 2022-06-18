@@ -1,86 +1,43 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { getInitialData } from '../../utils/sampleNote'
 import { CardsNotesContents, InputSection, Title } from '../../components'
 import { Gap } from '../atoms'
-import { addToDatabase, deleteItemDatabase } from '../../utils/functions'
-import {AppContext} from '../../utils/context/appContex'
+import { AppContext } from '../../utils/context/appContex'
 
 const NotesApp = () => {
-  
-  const [notesNotArchived, setNotesNotArchived] = useState([])
-  const [title, setTitle] = useState("")
-  const [content, setContent] = useState("")
-  const [notesArchived, setNoteArchived] = useState([])
 
+  const context = useContext(AppContext)
+  const { dbNotArchived, setDbNotArchived } = context.stateDbNotArchived
+  const { dbArchived } = context.stateDbArchived
+  
   useEffect(() => {
-    setNotesNotArchived(getInitialData())
+    setDbNotArchived(getInitialData())
+    return () => {
+      setDbNotArchived([])
+    }
   },[])
 
-  const createNote = () => {
-    setNotesNotArchived([...notesNotArchived, {
-      id: Math.random(),
-      title: title,
-      body: content,
-      createdAt: new Date(),
-      archived: false,
-    }])
-    setTitle("")
-    setContent("")
-  }
 
-  
-  const deleteNote = (note) => {
-    if(!note.archived){
-      deleteItemDatabase(notesNotArchived, setNotesNotArchived, note.id)
-    } deleteItemDatabase(notesArchived, setNoteArchived, note.id)
-  }
-
-  const changeStatus = (note) => {
-   if(!note.archived) {
-      deleteItemDatabase(notesNotArchived, setNotesNotArchived, note.id)
-      addToDatabase(notesArchived, setNoteArchived, note, true)
-   } else {
-      deleteItemDatabase(notesArchived, setNoteArchived, note.id)
-      addToDatabase(notesNotArchived, setNotesNotArchived, note, false)
-   }      
-  }
-  const appContextValue = {
-    title,
-    content,
-    createNote
-  }
+    
   return (
     <>
       <Title title="judul" />
-      <AppContext.Provider value={appContextValue}>
-			<InputSection 
-        onChangeTitle={(e) => setTitle(e.target.value)}
-        onChangeContent={(e) => setContent(e.target.value)} 
-        />
-      </AppContext.Provider>  
+			<InputSection />
       <Gap className='h-3'/>
-      <CardsNotesContents 
-        arrayNotes={notesNotArchived}
-        onClickDeleteNote={deleteNote}
-        onClickArsip={changeStatus} 
-      />
+      <CardsNotesContents data={dbNotArchived}/>
       <Gap className='h-10'/>
       <p className='text-center'>archived note :</p>
       <Gap className='h-10'/>
       {
-        notesArchived.length > 0 ? (
-          <CardsNotesContents 
-            arrayNotes={notesArchived}
-            onClickDeleteNote={deleteNote}
-            onClickArsip={changeStatus} 
-          />
+        dbArchived.length > 0 ? (
+          <CardsNotesContents data={dbArchived} />
         ) : (
           <>
           <p className='text-center'>kosong</p>
           <Gap className='h-10'/>
           </>
         )
-      }
+      } 
       
     </>
   )

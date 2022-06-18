@@ -1,12 +1,10 @@
 import React from 'react'
 
-const ButtonSmall = ({title, className, onClickDeleteNote, onClickArsip, param}) => {
+const ButtonSmall = ({title, className, onClick}) => {
   return (
     <button 
       className={className} 
-      onClick={title == 'hapus' ? 
-        () => onClickDeleteNote(param) : 
-        () => onClickArsip(param)}>
+      onClick={onClick}>
       {title}
     </button>
   )
