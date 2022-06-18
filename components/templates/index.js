@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { getInitialData } from '../../utils/sampleNote'
-import { CardsNotesContents, InputSection, Title } from '../../components'
+import { CardsNotesContents, InputSection, TextMedium } from '../../components'
 import { Gap } from '../atoms'
 import { AppContext } from '../../utils/context/appContex'
 
@@ -16,18 +16,19 @@ const NotesApp = () => {
       setDbNotArchived([])
     }
   },[])
-
-
-    
+  
   return (
     <>
-      <Title title="judul" />
+      <TextMedium caption="judul" />
 			<InputSection />
       <Gap className='h-3'/>
-      <CardsNotesContents data={dbNotArchived}/>
+      <section className='max-w-screen-lg m-auto'>
+        <CardsNotesContents data={dbNotArchived}/>
+      </section>
       <Gap className='h-10'/>
-      <p className='text-center'>archived note :</p>
+      <TextMedium caption="archived notes"/>
       <Gap className='h-10'/>
+      <section className='max-w-screen-lg m-auto'>
       {
         dbArchived.length > 0 ? (
           <CardsNotesContents data={dbArchived} />
@@ -38,6 +39,7 @@ const NotesApp = () => {
           </>
         )
       } 
+      </section>
       
     </>
   )

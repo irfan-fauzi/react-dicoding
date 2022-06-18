@@ -1,11 +1,11 @@
 import React, { useContext } from 'react'
-import { NoteTitle, NoteContent, ButtonSmall, NoteCreatedDate } from '../../../components'
+import { ButtonSmall, Gap, TextMedium } from '../../../components'
 import { AppContext } from '../../../utils/context/appContex'
-import { Gap } from '../../atoms'
-import  {deleteItemDatabase, addToDatabase } from '../../../utils/functions'
+import { deleteItemDatabase, addToDatabase } from '../../../utils/functions'
+import {showFormattedDate} from '../../../utils/sampleNote'
 
 const CardNoteContent = ({notes}) => {
-  
+
   const context = useContext(AppContext)
   const { dbNotArchived, setDbNotArchived } = context.stateDbNotArchived
   const { dbArchived, setDbArchived} = context.stateDbArchived
@@ -28,9 +28,9 @@ const CardNoteContent = ({notes}) => {
 
   return (
     <article className='border border-black p-3'>
-      <NoteTitle title={notes.title} />
-      <NoteCreatedDate date={notes.createdAt}/>
-      <NoteContent content={notes.body} />
+      <TextMedium caption={notes.title} />
+      <TextMedium caption={showFormattedDate(notes.createdAt)} />
+      <TextMedium caption={notes.body} />
       <Gap className='h-3' />
       <div className='flex w-full justify-between '>
         <ButtonSmall 
@@ -44,7 +44,6 @@ const CardNoteContent = ({notes}) => {
           onClick={() => deleteNote(notes)}
           />
       </div>
-    
       <Gap className='h-3' />
     </article>
   )

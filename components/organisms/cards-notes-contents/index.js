@@ -3,7 +3,7 @@ import { CardNoteContent } from '../../../components'
 
 const CardsNotesContents = ({data}) => {
   return (
-    <section className='grid grid-cards gap-1 max-w-screen-lg mx-auto'>
+    <section className='grid grid-cards gap-1'>
      {
        data.map(notes => (
         <CardNoteContent 
