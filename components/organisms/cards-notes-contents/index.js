@@ -1,8 +1,10 @@
 import React from 'react'
-import { CardNoteContent } from '../../../components'
+import { CardNoteContent, TextMedium } from '../../../components'
 
 const CardsNotesContents = ({data}) => {
   return (
+    <>
+    {data.length ? (
     <section className='grid grid-cards gap-1'>
      {
        data.map(notes => (
@@ -13,6 +15,11 @@ const CardsNotesContents = ({data}) => {
        ))
      }
     </section>
+    ) : (
+      <TextMedium caption="tidak ada data" />
+    )
+    }
+    </>
   )
 }
 

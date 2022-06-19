@@ -29,16 +29,7 @@ const NotesApp = () => {
       <TextMedium caption="archived notes"/>
       <Gap className='h-10'/>
       <section className='max-w-screen-lg m-auto'>
-      {
-        dbArchived.length > 0 ? (
-          <CardsNotesContents data={dbArchived} />
-        ) : (
-          <>
-          <p className='text-center'>kosong</p>
-          <Gap className='h-10'/>
-          </>
-        )
-      } 
+        <CardsNotesContents data={dbArchived}/>
       </section>
       
     </>

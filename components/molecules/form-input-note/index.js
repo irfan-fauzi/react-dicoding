@@ -4,18 +4,7 @@ import { AppContext } from '../../../utils/context/appContex'
 
 const FormInputNote = () => {
   const context = useContext(AppContext)
-  const dbNoteNotArchived = context.stateDbNotArchived.dbNotArchived
-  const createNote = () => {
-    context.stateDbNotArchived.setDbNotArchived([...dbNoteNotArchived, {
-      id: Math.random(),
-      title: context.stateTitle.title,
-      body: context.stateContent.content,
-      createdAt: new Date(),
-      archived: false,
-    }])
-    context.stateTitle.setTitle("")
-    context.stateContent.setContent("")
-  }
+  const {createNote} = context.action
   return (
     <div className='max-w-lg px-3 m-auto'>
       <div className='flex flex-col'>
