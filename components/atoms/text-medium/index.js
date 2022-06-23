@@ -1,8 +1,8 @@
 import React from 'react'
 
-const TextMedium = ({caption}) => {
+const TextMedium = ({caption, className}) => {
   return (
-    <h1>{caption}</h1>
+    <h1 className={className}>{caption}</h1>
   )
 }
 

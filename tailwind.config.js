@@ -6,6 +6,10 @@ module.exports = {
   ],
   theme: {
     extend: {},
+    fontFamily: {
+      'montserrat': ['Montserrat', 'sans-serif'],
+      'roboto': ['Roboto', 'sans-serif']
+    },
   },
   plugins: [
     plugin(({ addUtilities }) => {
@@ -16,6 +20,6 @@ module.exports = {
       }
       addUtilities(utilities)
     }),
-    
+    require('@tailwindcss/line-clamp')
   ],
 }

@@ -18,21 +18,26 @@ const NotesApp = () => {
   },[])
   
   return (
-    <>
-      <TextMedium caption="judul" />
-			<InputSection />
+    <div className='font-montserrat bg-gray-800'>
       <Gap className='h-3'/>
-      <section className='max-w-screen-lg m-auto'>
+      <section className='max-w-screen-lg mx-auto p-3'>
+      <TextMedium caption="Notes" className='text-white text-2xl'/>
+      </section>
+			
+      <Gap className='h-3'/>
+      <section className='max-w-screen-lg m-auto p-3'>
         <CardsNotesContents data={dbNotArchived}/>
       </section>
       <Gap className='h-10'/>
-      <TextMedium caption="archived notes"/>
+      <section className='max-w-screen-lg m-auto p-3'>
+        <TextMedium caption="archived notes"/>
+      </section>
       <Gap className='h-10'/>
-      <section className='max-w-screen-lg m-auto'>
+      <section className='max-w-screen-lg m-auto p-3'>
         <CardsNotesContents data={dbArchived}/>
       </section>
-      
-    </>
+      <Gap className='h-10'/>
+    </div>
   )
 }
 

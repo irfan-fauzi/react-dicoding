@@ -1,24 +1,26 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { CardNoteContent, TextMedium } from '../../../components'
+import { AppContext } from '../../../utils/context/appContex'
 
 const CardsNotesContents = ({data}) => {
+  const context = useContext(AppContext)
+  const {colorNote} = context.stateColor
   return (
     <>
     {data.length ? (
-    <section className='grid grid-cards gap-1'>
+    <section className='grid grid-cards gap-4'>
      {
-       data.map(notes => (
-        <CardNoteContent 
+       data.map((notes) =>
+        (<CardNoteContent 
           key={Math.random()} 
-          notes={notes} 
-        />
-       ))
+          notes={notes}
+          randomNumber={Math.floor(Math.random() * colorNote.length)}
+        />))
      }
     </section>
     ) : (
       <TextMedium caption="tidak ada data" />
-    )
-    }
+    )}
     </>
   )
 }

@@ -8,14 +8,16 @@ const Home = () => {
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
   const [notesArchived, setNoteArchived] = useState([])
+  const [colorNote, setColorNote] = useState(['bg-red-200', 'bg-blue-200', 'bg-yellow-200', 'bg-purple-200'])
 
-  const createNote = () => {
+    const createNote = () => {
     setNotesNotArchived([...notesNotArchived, {
       id: Math.random(),
       title: title,
       body: content,
       createdAt: new Date(),
       archived: false,
+    
     }])
     setTitle("")
     setContent("")
@@ -52,11 +54,16 @@ const Home = () => {
       content,
       setContent
     },
+    stateColor: {
+      colorNote,
+      setColorNote
+    },
     action: {
       createNote,
       deleteNote,
       changeStatusArchived
-    }
+    },
+    
   } 
 
   return (
