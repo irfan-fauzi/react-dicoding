@@ -7,6 +7,7 @@ const Home = () => {
   const [notesNotArchived, setNotesNotArchived] = useState([])
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
+  const [ isShowForm, setIsShowForm ] = useState(false)
   const [notesArchived, setNoteArchived] = useState([])
   const [colorNote, setColorNote] = useState(['bg-red-200', 'bg-blue-200', 'bg-yellow-200', 'bg-purple-200'])
 
@@ -57,6 +58,10 @@ const Home = () => {
     stateColor: {
       colorNote,
       setColorNote
+    },
+    stateShowForm : {
+      isShowForm,
+      setIsShowForm
     },
     action: {
       createNote,

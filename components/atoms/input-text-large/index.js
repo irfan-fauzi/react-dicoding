@@ -1,9 +1,9 @@
 import React from 'react'
 
-const InputTextLarge = ({onChange, value}) => {
+const InputTextLarge = ({onChange, value, className, placeholder}) => {
   return (
     <>
-      <textarea name="note-content" id="" cols="30" rows="10" className='border border-black' placeholder='note content' onChange={onChange} value={value}></textarea>
+      <textarea name="note-content" id="" cols="50" rows="13" className={className} placeholder={placeholder} onChange={onChange} value={value}></textarea>
     </>
   )
 }

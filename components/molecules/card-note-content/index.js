@@ -3,7 +3,8 @@ import { ButtonSmall, Gap, TextMedium } from '../../../components'
 import { AppContext } from '../../../utils/context/appContex'
 import {showFormattedDate} from '../../../utils/sampleNote'
 import {AiOutlineSwap} from 'react-icons/ai'
-import {BsBookmark} from 'react-icons/bs'
+import {BsBookmark, BsFillJournalBookmarkFill} from 'react-icons/bs'
+import {FiTrash} from 'react-icons/fi'
 
 const CardNoteContent = ({notes, randomNumber}) => {
 
@@ -13,24 +14,26 @@ const CardNoteContent = ({notes, randomNumber}) => {
   
   
   return (
-    <article className={`${colorNote[randomNumber]} rounded-2xl p-3`}>
-      <TextMedium caption={notes.title} />
-      <TextMedium caption={showFormattedDate(notes.createdAt)} />
-      <TextMedium caption={notes.body} className='line-clamp-3' />
+    <article className={`${colorNote[randomNumber]} rounded-2xl p-4`}>
+      <Gap className='h-1' />
+      <TextMedium className='text-xl font-semibold' caption={notes.title} />
       <Gap className='h-3' />
+      <TextMedium caption={notes.body} className='font-medium text-gray-800 line-clamp-4' />
+      <Gap className='h-3' />
+      <TextMedium className='text-xs text-gray-700' caption={showFormattedDate(notes.createdAt)} />
+      <Gap className='h-5' />
       <div className='flex w-full justify-between '>
         <ButtonSmall 
-          className=' px-4 py-2' 
+          className='flex px-3 items-center gap-1 rounded-lg bg-white' 
           onClick={() => changeStatusArchived(notes)}
-          >{ notes.archived ? <AiOutlineSwap /> : <BsBookmark />}</ButtonSmall>
-        <ButtonSmall 
-          title="hapus" 
-          className=' px-4 py-2'
+          >{ notes.archived ? <AiOutlineSwap /> : <BsFillJournalBookmarkFill />}<TextMedium caption={notes.archived ? 'undo' : 'arsipkan'} className='text-xs' /></ButtonSmall>
+        <ButtonSmall  
+          className='flex items-center p-3 gap-1 rounded-lg bg-white'
           onClick={() => deleteNote(notes)}
-          />
+          ><FiTrash  /><TextMedium caption='hapus' className='text-xs' /></ButtonSmall>
       </div>
+      <Gap className='h-2' />
       
-      <Gap className='h-3' />
     </article>
   )
 }
