@@ -10,7 +10,7 @@ const FormInputNote = () => {
   return (
     <div>
       <Gap className='h-5' />
-      <div className='flex w-full  justify-between'>
+      <div className='flex w-full justify-between'>
         <ButtonSmall onClick={() => setIsShowForm(false)} className='bg-gray-800 p-3 rounded-xl' 
           ><FiChevronLeft size={20} color='white' /></ButtonSmall>
         <ButtonSmall onClick={createNote} className='bg-gray-800 px-6 rounded-xl text-white' title='save'></ButtonSmall>

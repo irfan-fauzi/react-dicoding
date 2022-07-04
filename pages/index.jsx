@@ -7,21 +7,22 @@ const Home = () => {
   const [notesNotArchived, setNotesNotArchived] = useState([])
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
-  const [ isShowForm, setIsShowForm ] = useState(false)
+  const [isShowForm, setIsShowForm] = useState(false)
+  const [showWarningDelete, setShowWarningDelete] = useState(false)
   const [notesArchived, setNoteArchived] = useState([])
   const [colorNote, setColorNote] = useState(['bg-red-200', 'bg-blue-200', 'bg-yellow-200', 'bg-purple-200'])
 
-    const createNote = () => {
+  const createNote = () => {
     setNotesNotArchived([...notesNotArchived, {
       id: Math.random(),
       title: title,
       body: content,
       createdAt: new Date(),
       archived: false,
-    
     }])
     setTitle("")
     setContent("")
+    setIsShowForm(false)
   }
   const changeStatusArchived = (note) => {
     if(!note.archived) {
@@ -38,7 +39,8 @@ const Home = () => {
        deleteItemDatabase(notesNotArchived, setNotesNotArchived, note.id)
      } deleteItemDatabase(notesArchived, setNoteArchived, note.id)
    }
-  const contextValue = {
+  
+   const contextValue = {
     stateDbArchived: {
       dbArchived: notesArchived,
       setDbArchived: setNoteArchived
@@ -63,12 +65,15 @@ const Home = () => {
       isShowForm,
       setIsShowForm
     },
+    stateShowWarningDelete : {
+      showWarningDelete,
+      setShowWarningDelete
+    },
     action: {
       createNote,
       deleteNote,
       changeStatusArchived
-    },
-    
+    },    
   } 
 
   return (

@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { getInitialData } from '../../utils/sampleNote'
-import { CardsNotesContents, InputSection, TextMedium } from '../../components'
+import { CardsNotesContents, InputSection, TextMedium, MainContainer } from '../../components'
 import { ButtonSmall, Gap } from '../atoms'
 import { AppContext } from '../../utils/context/appContex'
 import { AiOutlinePlus } from 'react-icons/ai'
@@ -11,6 +11,7 @@ const NotesApp = () => {
   const { dbNotArchived, setDbNotArchived } = context.stateDbNotArchived
   const { dbArchived } = context.stateDbArchived
   const { isShowForm, setIsShowForm } = context.stateShowForm
+  const {showWarningDelete, setShowWarningDelete} = context.stateShowWarningDelete
   
   useEffect(() => {
     setDbNotArchived(getInitialData())
@@ -21,33 +22,32 @@ const NotesApp = () => {
   
   return (
     <div className='font-montserrat bg-gray-800'>
-      {
-        isShowForm && (
+      {isShowForm && (
           <InputSection />
-        )
-      }
-       
+        )}
       <Gap className='h-8'/>
-      <section className='max-w-screen-lg mx-auto px-3'>
+      <MainContainer>
         <TextMedium caption="Notes" className='text-white text-2xl'/>
-      </section>
-      <Gap className='h-5'/>
-      <section className='max-w-screen-lg m-auto px-4 '>
+        <Gap className='h-5'/>
         <CardsNotesContents data={dbNotArchived}/>
-      </section>
-      <Gap className='h-10'/>
-      <section className='max-w-screen-lg m-auto p-3'>
-        <TextMedium caption="archived notes"/>
-      </section>
-      <Gap className='h-10'/>
-      <section className='max-w-screen-lg m-auto p-3'>
+        <Gap className='h-10'/>
+        <TextMedium caption="archived notes" className='text-white'/>
+        <Gap className='h-5'/>
         <CardsNotesContents data={dbArchived}/>
-      </section>
+      </MainContainer>
       <Gap className='h-10'/>
       <ButtonSmall onClick={() => setIsShowForm(true)} className='bg-gray-700 rounded-full p-4 fixed bottom-5 right-5 '>
-        <AiOutlinePlus size={20} color='white'/>
+        <AiOutlinePlus size={27} color='white'/>
       </ButtonSmall>
-     
+      {
+        showWarningDelete && (
+          <div className='w-full bg-red-500'>
+            <p className='text-2xl'>apakah anda yakin</p>
+            <button onClick={() => setShowWarningDelete(false)} className='border'>tidak</button>
+          </div>
+        )
+      }
+      
     </div>
   )
 }

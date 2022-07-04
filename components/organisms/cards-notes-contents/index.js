@@ -9,8 +9,7 @@ const CardsNotesContents = ({data}) => {
     <>
     {data.length ? (
     <section className='grid grid-cards gap-4'>
-     {
-       data.map((notes) =>
+     {data.map((notes) =>
         (<CardNoteContent 
           key={Math.random()} 
           notes={notes}
@@ -19,7 +18,7 @@ const CardsNotesContents = ({data}) => {
      }
     </section>
     ) : (
-      <TextMedium caption="tidak ada data" />
+      <TextMedium caption="tidak ada data" className='text-white'/>
     )}
     </>
   )
