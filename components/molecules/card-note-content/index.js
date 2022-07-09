@@ -1,9 +1,10 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
+import Link from 'next/link'
 import { ButtonSmall, Gap, TextMedium } from '../../../components'
 import { AppContext } from '../../../utils/context/appContex'
 import {showFormattedDate} from '../../../utils/sampleNote'
 import {AiOutlineSwap} from 'react-icons/ai'
-import {BsBookmark, BsFillJournalBookmarkFill} from 'react-icons/bs'
+import {BsFillJournalBookmarkFill} from 'react-icons/bs'
 import {FiTrash} from 'react-icons/fi'
 
 const CardNoteContent = ({notes, randomNumber}) => {
@@ -19,7 +20,11 @@ const CardNoteContent = ({notes, randomNumber}) => {
       <Gap className='h-1' />
       <TextMedium className='text-xl font-semibold' caption={notes.title} />
       <Gap className='h-3' />
-      <TextMedium caption={notes.body} className='font-medium text-gray-800 line-clamp-4' />
+      <Link href={`/detail/${notes.id}`}>
+        <a>
+          <TextMedium caption={notes.body} className='font-medium text-gray-800 line-clamp-4' />
+        </a>
+      </Link>
       <Gap className='h-3' />
       <TextMedium className='text-xs text-gray-700' caption={showFormattedDate(notes.createdAt)} />
       <Gap className='h-5' />
