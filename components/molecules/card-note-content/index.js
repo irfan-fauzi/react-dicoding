@@ -11,8 +11,7 @@ const CardNoteContent = ({notes, randomNumber}) => {
 
   const context = useContext(AppContext)
   const {colorNote} = context.stateColor
-  const {changeStatusArchived} = context.action
-  const {setShowWarningDelete} = context.stateShowWarningDelete
+  const {changeStatusArchived, deleteNote} = context.action
   
   
   return (
@@ -20,11 +19,7 @@ const CardNoteContent = ({notes, randomNumber}) => {
       <Gap className='h-1' />
       <TextMedium className='text-xl font-semibold' caption={notes.title} />
       <Gap className='h-3' />
-      <Link href={`/detail/${notes.id}`}>
-        <a>
-          <TextMedium caption={notes.body} className='font-medium text-gray-800 line-clamp-4' />
-        </a>
-      </Link>
+      <TextMedium caption={notes.body} className='font-medium text-gray-800 line-clamp-4' /> 
       <Gap className='h-3' />
       <TextMedium className='text-xs text-gray-700' caption={showFormattedDate(notes.createdAt)} />
       <Gap className='h-5' />
@@ -35,7 +30,7 @@ const CardNoteContent = ({notes, randomNumber}) => {
           >{ notes.archived ? <AiOutlineSwap /> : <BsFillJournalBookmarkFill />}<TextMedium caption={notes.archived ? 'undo' : 'arsipkan'} className='text-xs' /></ButtonSmall>
         <ButtonSmall  
           className='flex items-center p-3 gap-1 rounded-lg bg-white'
-          onClick={() => setShowWarningDelete(true)}
+          onClick={() => deleteNote(notes)}
           ><FiTrash  /><TextMedium caption='hapus' className='text-xs' /></ButtonSmall>
       </div>
       <Gap className='h-2' />
