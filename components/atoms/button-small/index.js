@@ -5,7 +5,6 @@ const ButtonSmall = ({title, className, onClick, children}) => {
     <button className={className}  onClick={onClick}>
       {title}
       {children}
-
     </button>
   )
 }

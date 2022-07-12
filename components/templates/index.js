@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { getInitialData } from '../../utils/sampleNote'
-import { CardsNotesContents, InputSection, TextMedium, MainContainer } from '../../components'
-import { ButtonSmall, Gap } from '../atoms'
+import { CardsNotesContents, InputSection, TextMedium, MainContainer,  ButtonSmall, Gap, WarningDelete } from '../../components'
 import { AppContext } from '../../utils/context/appContex'
 import { AiOutlinePlus } from 'react-icons/ai'
 
@@ -11,14 +10,14 @@ const NotesApp = () => {
   const { dbNotArchived, setDbNotArchived } = context.stateDbNotArchived
   const { dbArchived } = context.stateDbArchived
   const { isShowForm, setIsShowForm } = context.stateShowForm
-  
+  const { warningDelete} = context.stateWarningDelete
   
   useEffect(() => {
     setDbNotArchived(getInitialData())
   },[])
-  
+
   return (
-    <div className='font-montserrat bg-gray-800'>
+    <div className='font-montserrat bg-gray-800 min-h-screen'>
       {isShowForm && (
           <InputSection />
         )}
@@ -36,7 +35,11 @@ const NotesApp = () => {
       <ButtonSmall onClick={() => setIsShowForm(true)} className='bg-gray-700 rounded-full p-4 fixed bottom-5 right-5 '>
         <AiOutlinePlus size={27} color='white'/>
       </ButtonSmall>
-      
+      {
+        warningDelete && (
+          <WarningDelete />
+        )
+      }
     </div>
   )
 }

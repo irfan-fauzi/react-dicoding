@@ -8,10 +8,10 @@ function MyApp({ Component, pageProps }) {
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
   const [isShowForm, setIsShowForm] = useState(false)
-  const [showWarningDelete, setShowWarningDelete] = useState(false)
   const [notesArchived, setNoteArchived] = useState([])
   const [colorNote, setColorNote] = useState(['bg-red-200', 'bg-blue-200', 'bg-yellow-200', 'bg-purple-200'])
-
+  const [warningDelete, setWarningDelete] = useState(false)
+  const [value, setValue] = useState({})
   const createNote = () => {
     setNotesNotArchived([...notesNotArchived, {
       id: Math.random(),
@@ -33,13 +33,19 @@ function MyApp({ Component, pageProps }) {
        addToDatabase(notesNotArchived, setNotesNotArchived, note, false)
     }      
    }
-   
+
+  
   const deleteNote = (note) => {
+
      if(!note.archived){
        deleteItemDatabase(notesNotArchived, setNotesNotArchived, note.id)
      } deleteItemDatabase(notesArchived, setNoteArchived, note.id)
    }
   
+   const beforeDelete = (value) => {
+    setValue(value)
+    setWarningDelete(true)
+  }
    const contextValue = {
     stateDbArchived: {
       dbArchived: notesArchived,
@@ -65,13 +71,18 @@ function MyApp({ Component, pageProps }) {
       isShowForm,
       setIsShowForm
     },
-    stateShowWarningDelete : {
-      showWarningDelete,
-      setShowWarningDelete
+    stateValue : {
+      value,
+      setValue
+    },
+    stateWarningDelete : {
+      warningDelete,
+      setWarningDelete
     },
     action: {
       createNote,
       deleteNote,
+      beforeDelete,
       changeStatusArchived
     },    
   } 

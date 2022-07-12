@@ -1,18 +1,16 @@
 import React, { useContext } from 'react'
-import Link from 'next/link'
 import { ButtonSmall, Gap, TextMedium } from '../../../components'
 import { AppContext } from '../../../utils/context/appContex'
-import {showFormattedDate} from '../../../utils/sampleNote'
-import {AiOutlineSwap} from 'react-icons/ai'
-import {BsFillJournalBookmarkFill} from 'react-icons/bs'
-import {FiTrash} from 'react-icons/fi'
+import { showFormattedDate } from '../../../utils/sampleNote'
+import { AiOutlineSwap } from 'react-icons/ai'
+import { BsFillJournalBookmarkFill } from 'react-icons/bs'
+import { FiTrash } from 'react-icons/fi'
 
 const CardNoteContent = ({notes, randomNumber}) => {
 
   const context = useContext(AppContext)
   const {colorNote} = context.stateColor
-  const {changeStatusArchived, deleteNote} = context.action
-  
+  const {changeStatusArchived, beforeDelete} = context.action
   
   return (
     <article className={`${colorNote[randomNumber]} rounded-2xl p-4`}>
@@ -30,11 +28,10 @@ const CardNoteContent = ({notes, randomNumber}) => {
           >{ notes.archived ? <AiOutlineSwap /> : <BsFillJournalBookmarkFill />}<TextMedium caption={notes.archived ? 'undo' : 'arsipkan'} className='text-xs' /></ButtonSmall>
         <ButtonSmall  
           className='flex items-center p-3 gap-1 rounded-lg bg-white'
-          onClick={() => deleteNote(notes)}
+          onClick={() => beforeDelete(notes)}
           ><FiTrash  /><TextMedium caption='hapus' className='text-xs' /></ButtonSmall>
       </div>
-      <Gap className='h-2' />
-      
+      <Gap className='h-2' /> 
     </article>
   )
 }
