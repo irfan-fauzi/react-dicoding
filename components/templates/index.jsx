@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import { getInitialData } from '../../utils/sampleNote'
-import { CardsNotesContents, InputSection, TextMedium, MainContainer,  ButtonSmall, Gap, WarningDelete } from '../../components'
+import { CardsNotesContents, InputSection, TextMedium, MainContainer,  ButtonSmall, Gap, WarningDelete } from '..'
 import { AppContext } from '../../utils/context/appContex'
 import { AiOutlinePlus } from 'react-icons/ai'
 
@@ -10,8 +10,10 @@ const NotesApp = () => {
   const { dbNotArchived, setDbNotArchived } = context.stateDbNotArchived
   const { dbArchived } = context.stateDbArchived
   const { isShowForm, setIsShowForm } = context.stateShowForm
-  const { warningDelete} = context.stateWarningDelete
-  
+  const { warningDelete } = context.stateWarningDelete
+  const { isShowDetail } = context.stateShowDetail
+  const { value } = context.stateValue 
+
   useEffect(() => {
     setDbNotArchived(getInitialData())
   },[])
@@ -21,6 +23,7 @@ const NotesApp = () => {
       {isShowForm && (
           <InputSection />
         )}
+ 
       <Gap className='h-8'/>
       <MainContainer>
         <TextMedium caption="Notes" className='text-white text-2xl'/>
@@ -38,6 +41,15 @@ const NotesApp = () => {
       {
         warningDelete && (
           <WarningDelete />
+        )
+      }{
+        isShowDetail && (
+          <article className='border bg-gray-900 fixed top-0 max-w-screen-lg overflow-y-scroll max-h-screen'>
+            <section>
+              <TextMedium caption={value.title} className='text-gray-50 text-2xl'/>
+              <TextMedium caption={value.body} className='text-gray-50'/>
+            </section>
+          </article>
         )
       }
     </div>

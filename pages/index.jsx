@@ -1,12 +1,11 @@
-import NotesApp from '../components/templates'
+/* eslint-disable linebreak-style */
+/* eslint-disable react/react-in-jsx-scope */
+import NotesApp from '../components/templates';
 
-const Home = () => {
-  
+function Home() {
   return (
-    <>  
-      <NotesApp/>
-    </>
-  )
+    <NotesApp />
+  );
 }
 
-export default Home
+export default Home;

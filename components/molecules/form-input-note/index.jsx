@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { InputTextMedium, InputTextLarge, ButtonSmall, Gap } from '../../../components'
+import { InputTextMedium, InputTextLarge, ButtonSmall, Gap } from '../..'
 import { AppContext } from '../../../utils/context/appContex'
 import { FiChevronLeft } from 'react-icons/fi'
 

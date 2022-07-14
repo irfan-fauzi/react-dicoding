@@ -1,96 +1,105 @@
-import { useState } from 'react'
-import '../styles/globals.css'
-import { AppContext } from '../utils/context/appContex'
-import { deleteItemDatabase, addToDatabase } from '../utils/functions'
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/jsx-no-constructed-context-values */
+import { useState } from 'react';
+import '../styles/globals.css';
+import { AppContext } from '../utils/context/appContex';
+import { deleteItemDatabase, addToDatabase } from '../utils/functions';
 
 function MyApp({ Component, pageProps }) {
-  const [notesNotArchived, setNotesNotArchived] = useState([])
-  const [title, setTitle] = useState("")
-  const [content, setContent] = useState("")
-  const [isShowForm, setIsShowForm] = useState(false)
-  const [notesArchived, setNoteArchived] = useState([])
-  const [colorNote, setColorNote] = useState(['bg-red-200', 'bg-blue-200', 'bg-yellow-200', 'bg-purple-200'])
-  const [warningDelete, setWarningDelete] = useState(false)
-  const [value, setValue] = useState({})
+  const [notesNotArchived, setNotesNotArchived] = useState([]);
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+  const [isShowForm, setIsShowForm] = useState(false);
+  const [notesArchived, setNoteArchived] = useState([]);
+  const [colorNote, setColorNote] = useState(['bg-red-200', 'bg-blue-200', 'bg-yellow-200', 'bg-purple-200']);
+  const [warningDelete, setWarningDelete] = useState(false);
+  const [value, setValue] = useState({});
+  const [isShowDetail, setIsShowDetail] = useState(false);
   const createNote = () => {
     setNotesNotArchived([...notesNotArchived, {
       id: Math.random(),
-      title: title,
+      title,
       body: content,
       createdAt: new Date(),
       archived: false,
-    }])
-    setTitle("")
-    setContent("")
-    setIsShowForm(false)
-  }
+    }]);
+    setTitle('');
+    setContent('');
+    setIsShowForm(false);
+  };
   const changeStatusArchived = (note) => {
-    if(!note.archived) {
-       deleteItemDatabase(notesNotArchived, setNotesNotArchived, note.id)
-       addToDatabase(notesArchived, setNoteArchived, note, true)
+    if (!note.archived) {
+      deleteItemDatabase(notesNotArchived, setNotesNotArchived, note.id);
+      addToDatabase(notesArchived, setNoteArchived, note, true);
     } else {
-       deleteItemDatabase(notesArchived, setNoteArchived, note.id)
-       addToDatabase(notesNotArchived, setNotesNotArchived, note, false)
-    }      
-   }
-
-  
+      deleteItemDatabase(notesArchived, setNoteArchived, note.id);
+      addToDatabase(notesNotArchived, setNotesNotArchived, note, false);
+    }
+  };
+  const showDetail = (note) => {
+    setIsShowDetail(true);
+    setValue(note);
+  };
   const deleteNote = (note) => {
+    if (!note.archived) {
+      deleteItemDatabase(notesNotArchived, setNotesNotArchived, note.id);
+    } deleteItemDatabase(notesArchived, setNoteArchived, note.id);
+  };
 
-     if(!note.archived){
-       deleteItemDatabase(notesNotArchived, setNotesNotArchived, note.id)
-     } deleteItemDatabase(notesArchived, setNoteArchived, note.id)
-   }
-  
-   const beforeDelete = (value) => {
-    setValue(value)
-    setWarningDelete(true)
-  }
-   const contextValue = {
+  const beforeDelete = (note) => {
+    setValue(note);
+    setWarningDelete(true);
+  };
+  const contextValue = {
     stateDbArchived: {
       dbArchived: notesArchived,
-      setDbArchived: setNoteArchived
+      setDbArchived: setNoteArchived,
     },
     stateDbNotArchived: {
       dbNotArchived: notesNotArchived,
-      setDbNotArchived: setNotesNotArchived
+      setDbNotArchived: setNotesNotArchived,
     },
     stateTitle: {
       title,
-      setTitle
+      setTitle,
     },
     stateContent: {
       content,
-      setContent
+      setContent,
     },
     stateColor: {
       colorNote,
-      setColorNote
+      setColorNote,
     },
-    stateShowForm : {
+    stateShowForm: {
       isShowForm,
-      setIsShowForm
+      setIsShowForm,
     },
-    stateValue : {
+    stateValue: {
       value,
-      setValue
+      setValue,
     },
-    stateWarningDelete : {
+    stateWarningDelete: {
       warningDelete,
-      setWarningDelete
+      setWarningDelete,
+    },
+    stateShowDetail: {
+      isShowDetail,
+      setIsShowDetail,
     },
     action: {
       createNote,
       deleteNote,
       beforeDelete,
-      changeStatusArchived
-    },    
-  } 
+      changeStatusArchived,
+      showDetail,
+    },
+  };
   return (
     <AppContext.Provider value={contextValue}>
       <Component {...pageProps} />
     </AppContext.Provider>
-  )
+  );
 }
 
-export default MyApp
+export default MyApp;

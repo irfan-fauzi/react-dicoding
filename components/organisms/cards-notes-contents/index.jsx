@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
-import { CardNoteContent, TextMedium } from '../../../components'
+import { CardNoteContent, TextMedium } from '../..'
 import { AppContext } from '../../../utils/context/appContex'
 
-const CardsNotesContents = ({data}) => {
+const CardsNotesContents = ({ data }) => {
   const context = useContext(AppContext)
-  const {colorNote} = context.stateColor
+  const { colorNote } = context.stateColor
   return (
     <>
     {data.length ? (

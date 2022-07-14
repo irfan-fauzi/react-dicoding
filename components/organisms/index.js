@@ -1,4 +1,5 @@
-import CardsNotesContents from './cards-notes-contents'
-import InputSection from './input-section'
+/* eslint-disable import/no-cycle */
+import CardsNotesContents from './cards-notes-contents';
+import InputSection from './input-section';
 
-export {CardsNotesContents, InputSection}
+export { CardsNotesContents, InputSection };
