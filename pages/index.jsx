@@ -1,5 +1,3 @@
-/* eslint-disable linebreak-style */
-/* eslint-disable react/react-in-jsx-scope */
 import NotesApp from '../components/templates';
 
 function Home() {

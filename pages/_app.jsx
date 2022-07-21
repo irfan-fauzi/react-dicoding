@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/jsx-no-constructed-context-values */
 import { useState } from 'react';
@@ -15,7 +16,21 @@ function MyApp({ Component, pageProps }) {
   const [warningDelete, setWarningDelete] = useState(false);
   const [value, setValue] = useState({});
   const [isShowDetail, setIsShowDetail] = useState(false);
+  const [warningMsg, setWarningMsg] = useState('');
+
+  const setInputType = (e, maxChar, setTypeInput) => {
+    const char = e.target.value;
+    const n = char.substring(0, maxChar);
+    setTypeInput(n);
+  };
   const createNote = () => {
+    if (!title) {
+      setWarningMsg('title harus di isi');
+      return false;
+    } if (!content) {
+      setWarningMsg('konten harus di isi');
+      return false;
+    }
     setNotesNotArchived([...notesNotArchived, {
       id: Math.random(),
       title,
@@ -87,12 +102,17 @@ function MyApp({ Component, pageProps }) {
       isShowDetail,
       setIsShowDetail,
     },
+    stateWarningMsg: {
+      warningMsg,
+      setWarningMsg,
+    },
     action: {
       createNote,
       deleteNote,
       beforeDelete,
       changeStatusArchived,
       showDetail,
+      setInputType,
     },
   };
   return (
