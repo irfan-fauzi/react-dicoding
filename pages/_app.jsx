@@ -1,12 +1,15 @@
 /* eslint-disable consistent-return */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/jsx-no-constructed-context-values */
-import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import '../styles/globals.css';
 import { AppContext } from '../utils/context/appContex';
 import { deleteItemDatabase, addToDatabase } from '../utils/functions';
+import { getInitialData } from '../utils/sampleNote';
 
 function MyApp({ Component, pageProps }) {
+  const router = useRouter();
   const [notesNotArchived, setNotesNotArchived] = useState([]);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -23,6 +26,9 @@ function MyApp({ Component, pageProps }) {
     const n = char.substring(0, maxChar);
     setTypeInput(n);
   };
+  useEffect(() => {
+    setNotesNotArchived(getInitialData());
+  }, []);
   const createNote = () => {
     if (!title) {
       setWarningMsg('title harus di isi');
@@ -40,7 +46,7 @@ function MyApp({ Component, pageProps }) {
     }]);
     setTitle('');
     setContent('');
-    setIsShowForm(false);
+    router.push('/');
   };
   const changeStatusArchived = (note) => {
     if (!note.archived) {
