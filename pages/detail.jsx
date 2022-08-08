@@ -13,7 +13,7 @@ function Details() {
   }, []);
   return (
     <div className="min-h-screen flex flex-col justify-between">
-      <header className="bg-gray-600">
+      <header className="bg-purple-400">
         <MainContainer>
           <div className="h-[4rem] flex items-center">
             <TextMedium caption="Detail Notes" className="text-xl text-white" />
@@ -30,10 +30,10 @@ function Details() {
           <TextMedium className="text-gray-800" caption={data.body} />
         </MainContainer>
       </main>
-      <footer className="text-white bg-gray-800">
+      <footer className="text-white bg-purple-400">
         <MainContainer>
           <div className="flex items-center h-[5rem]">
-            <p>nemo molestias eius, eligendi libero architecto?</p>
+            <p>made by 💌 for dicoding react biginner</p>
           </div>
         </MainContainer>
       </footer>
